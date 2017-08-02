@@ -1,30 +1,15 @@
 
-/**
- * Created by andrei.tarus on 7/18/2017.
- */
-
-var menu = require('./menu.js');
-
-menu.menu();
-
 var readline = require('readline');
+var rl = readline.createInterface(process.stdin, process.stdout);
 
-var rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+function readLine(str) {
+    rl.setPrompt(str+'> ');
+    rl.prompt();
+    rl.on('line', function (line) {
+        if (line === "right") rl.close();
+        return line;
 
-
-
-rl.question('Alege o optiune: ', function (name) {
-
-
-        // process.stdout.write('Well hello ' + answer);
-        // Console.log creates a formatted output from process.stdout.write().
-        console.log(' Ati ales optiunea ' + name );
-
-        rl.close();
-        process.stdin.destroy();
-
-
-});
+    }).on('close', function () {
+        return null;
+    });
+}
