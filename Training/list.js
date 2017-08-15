@@ -1,6 +1,8 @@
 /**
  * Created by andrei.tarus on 7/31/2017.
  */
+const util = require('util')
+
 function Node(value){
     this.data = value;
     this.previous = null;
@@ -16,22 +18,27 @@ function DoublyList() {
 
 
 
+
+
 //Print def method
-module.exports = DoublyList.prototype.print = function() {
+DoublyList.prototype.print = function() {
     var currentNode = this.head,
         length = this._length,
         count = 1,
         message = {failure: 'Failure: non-existent node in this list.'};
 
     // 1st use-case: an invalid position
-    if (length === 0 || position < 1 || position > length) {
+    if (length === 0) {
         throw new Error(message.failure);
     }
 
     // 2nd use-case: a valid position
-    while (count < length) {
+    while (count < length && currentNode ) {
         currentNode = currentNode.next;
-        console.log('Nodul - \n' + currentNode.data);
+
+
+        //console.log('Nodul --> ' + util.inspect(currentNode, {showHidden: false, depth: null}) + ' <-- \n');
+        console.log('Nodul --> ' + currentNode.data + ' <-- \n');
     }
 
     return currentNode;
@@ -41,6 +48,7 @@ module.exports = DoublyList.prototype.print = function() {
 //Add def method
 DoublyList.prototype.add = function(value) {
     var node = new Node(value);
+
 
     if (this._length) {
         this.tail.next = node;
@@ -53,7 +61,7 @@ DoublyList.prototype.add = function(value) {
 
     this._length++;
 
-    return node;
+    //return node;
 };
 
 
@@ -134,3 +142,4 @@ DoublyList.prototype.remove = function(position) {
 };
 
 
+module.exports = DoublyList;

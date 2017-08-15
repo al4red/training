@@ -1,9 +1,9 @@
-
 var Menu = require('terminal-menu');
-var listJs = require('./list.js');
+var DoublyList = require('./list.js');
+var readLine = require('./readLine.js').readFuncLine;
 
-console.log(listJs);
-//var list =  new DoublyList();
+
+var list =  new DoublyList();
 
 
 var menu = Menu({ width: 29, x: 4, y: 2 });
@@ -24,6 +24,7 @@ menu.on('select', function (label, index) {
         case 0:
        console.log("Adauga               ");
             var data = readLine("Adauga Node");
+            console.log("LIne : " +data +" \n");
             list.add(data);
             break;
 
